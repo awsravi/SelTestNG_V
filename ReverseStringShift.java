@@ -2,27 +2,32 @@ package com.vis.s;
 public class ReverseStringShift {
     public static void main(String[] args) {
     	//virtusa
-        String input = "Anakanna gari Viswanath";
-        String reversed = reverseString(input);
-        System.out.println(reversed);
-    }
+      String s = "ankanna gari viswanath";
 
-    public static String reverseString(String input) {
-        char[] characters = input.toCharArray();
-        int start = 0;
-        int end = characters.length - 1;
+		// Split the string into words
+		String[] words = s.split(" ");
 
-        while (start < end) {
-            // Swap the characters at the start and end positions
-            char temp = characters[start];
-            characters[start] = characters[end];
-            characters[end] = temp;
+		if (words.length >= 3) {
+			// Store the word at index 1
+			String temp = words[1];
 
-            // Move the start and end pointers toward each other
-            start++;
-            end--;
-        }
+			// Shift the word at index 2 to index 1
+			words[1] = words[0];
 
-        return new String(characters);
+			// Shift the stored word to index 0
+			words[0] = temp;
+
+			// Reverse the entire string
+			StringBuilder reversedString = new StringBuilder();
+			for (int i = words.length - 1; i >= 0; i--) {
+				reversedString.append(reverseWord(words[i]));
+				if (i > 0) {
+					reversedString.append(" ");
+				}
+			}
+
+			// Print the reversed string
+			System.out.println(reversedString.toString());
+
     }
 }
